@@ -7,10 +7,9 @@ class BetSchema extends Schema {
   up() {
     this.create('bets', (table) => {
       table.increments()
+      table.integer('user_id').unsigned().references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('game_id').unsigned().references('id').inTable('games').onUpdate('CASCADE').onDelete('CASCADE')
       table.string('choosenNumber', 256)
-      table.string('gameType', 30)
-      table.string('gameColor', 30)
-      table.integer('gamePrice')
       table.timestamps()
     })
   }

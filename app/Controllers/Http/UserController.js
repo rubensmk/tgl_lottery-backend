@@ -7,13 +7,13 @@ class UserController {
   async index({ request }) {
 
     const { page } = request.get()
-    const users = await User.query().paginate(page);
+    const users = await User.query().with('bets').paginate(page);
 
     return users
   }
 
   async show({ params }) {
-    const user = await User.findOrFail(params.id);
+    const user = await User.query().where('id', params.id).with('bets').firstOrFail();
     return user
   }
 
