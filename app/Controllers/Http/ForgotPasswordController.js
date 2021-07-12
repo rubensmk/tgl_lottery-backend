@@ -16,7 +16,7 @@ class ForgotPasswordController {
 
       await user.save()
 
-      await Mail.send(['emails.forgot_password'], { email, token: user.token, link: `${request.input('redirect_url')}?token=${user.token}` },
+      await Mail.send(['emails.forgot_password'], { email, token: user.token, link: `${request.input('redirect_url')}/${user.token}` },
         message => {
           message.to(user.email).from('admin@tgl.com.br', 'Admin|TGL ').subject('Recuperação de Senha')
         }
