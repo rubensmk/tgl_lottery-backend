@@ -10,8 +10,9 @@ class Bet {
   get rules() {
     return {
       choosenNumber: 'required',
-      user_id: 'required',
-      game_id: 'required'
+      gameType: 'required',
+      gameColor: 'required',
+      gamePrice: 'required',
     }
   }
 
