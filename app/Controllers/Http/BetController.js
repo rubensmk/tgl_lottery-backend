@@ -2,12 +2,13 @@
 
 const Bet = use('App/Models/Bet')
 const Mail = use('Mail')
+const Database = use('Database')
 
 class BetController {
 
   async index({ request }) {
-    const { page } = request.get()
-    const bets = await Bet.query().with('user').with('game').paginate(page);
+    const { page, user, game } = request.get()
+    const bets = await Database.from('bets').where('user_id', user).where('game_id', game).paginate(page, 5)
 
     return bets
   }
@@ -21,8 +22,8 @@ class BetController {
 
 
   async show({ params }) {
-    const bet = await Bet.query().where('id', params.id).with('user').with('game').firstOrFail();
-    return bet
+    const bets = await Database.from('bets').where('user_id', params.user).paginate(params.page, 5);
+    return bets
   }
 
 

@@ -13,6 +13,7 @@ Route.resource('games', 'GameController').apiOnly().validator(new Map([[['games.
 
 Route.group(() => {
   Route.resource('users', 'UserController').apiOnly().validator(new Map([[['users.update'], ['UpdateUser']]]))
+  Route.get('bets/:user/:page', 'BetController.show');
   Route.resource('bets', 'BetController').apiOnly().validator(new Map([[['bets.store'], ['Bet']], [['bets.update'], ['Bet']]]))
 }).middleware(['auth'])
 
