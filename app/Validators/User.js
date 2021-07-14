@@ -11,7 +11,7 @@ class User {
     return {
       username: 'required|string',
       email: 'required|email|unique:users',
-      password: 'required|confirmed'
+      password: 'required|confirmed|min:6'
     }
   }
 
